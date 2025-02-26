@@ -14,25 +14,22 @@ export default defineConfig({
 		}
 	}),
 
+	site: 'https://support.gls.ieatbeans.com',
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'GLS Docs',
 			social: {
 				github: 'https://github.com/KyGuy2002/gls-docs',
 			},
 			sidebar: [
 				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Hardware Setup',
+					autogenerate: { directory: 'hardware-setup' },
 				},
 			],
+			editLink: {
+				baseUrl: 'https://github.com/KyGuy2002/gls-docs/edit/master/',
+			}
 		}),
 	],
 

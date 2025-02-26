@@ -1,0 +1,33 @@
+---
+title: Tera HW0007 Barcode Scanner
+description: Programming QR codes for the Tera HW0007 Hands-free Desktop Barcode Scanner
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+The Tera HW0007 is a wireless gun-style barcode scanner.  It is stored in its charging cradle and can be removed to scan barcodes upon trigger pull.
+
+:::note
+Check out the [Tera 9000](/hardware-setup/tera-9000) instead.  It is the recommended scanner for most applications as it is hands-free and requires no trigger pull.
+:::
+
+Scan each of the following QR codes using the barcode scanner.  These configure the scanner to work with the rest of the system.
+
+:::danger[Careful]
+The scanner has a wide field of view and could accidentally scan a different code.  **Try covering the other codes with your hand**, or zooming so only one is visible.
+:::
+
+<Steps>
+
+    1. Reset to factory default
+        ![Barcode](/qr/tera-9000/factory.png)
+    2. Set volume to low
+        ![Barcode](/qr/tera-9000/factory.png)
+    3. Initialize add prefix sequence
+        ![Barcode](/qr/tera-9000/factory.png)
+    4. Add "1" to prefix code
+        ![Barcode](/qr/tera-9000/factory.png)
+    5. Add "1" to prefix code (again)
+        ![Barcode](/qr/tera-9000/factory.png)
+
+</Steps>
