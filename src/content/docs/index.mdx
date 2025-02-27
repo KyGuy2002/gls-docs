@@ -1,36 +1,62 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: GLS Docs
+description: Learn how to use your GLS system.
 template: splash
-hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+hero: {}
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid, LinkButton  } from '@astrojs/starlight/components';
+
+
+# Welcome to the Help Center
+Learn how to setup and use your new visitor mangement system.
+
+
+<LinkButton
+    href="/guides/i18n/"   
+    icon="right-arrow"
+    iconPlacement="end"
+>
+    System Overview
+</LinkButton>
+
+<LinkButton
+    href="/hardware-setup/monitor-setup"
+    variant='minimal'
+    icon="right-arrow"
+    iconPlacement="end"
+>
+    Setup a Kiosk
+</LinkButton>
+
+
 
 ## Next steps
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+<CardGrid>
+
+	<LinkCard
+		title="Customizing Stats Display"
+		href="/guides/i18n/"
+		description="Create announcements, show off statistics, and advertise events on any TV screen."
+	/>
+
+	<LinkCard
+		title="Enable Appointment Scheduling"
+		href="/guides/i18n/"
+		description="Streamline appointment registration and scheduling for your visitors."
+	/>
+
+	<LinkCard
+		title="Understanding Statistics"
+		href="/guides/i18n/"
+		description="Dive into your new data and learn how to make the most of it."
+	/>
+
+    <LinkCard
+		title="Setting up a Kiosk"
+		href="/guides/i18n/"
+		description="Assemble and configure a kiosk to display your GLS system."
+	/>
+
 </CardGrid>

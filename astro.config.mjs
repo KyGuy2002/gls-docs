@@ -22,6 +22,12 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'GLS Docs',
+            components: {
+                Hero: './src/components/Hero.astro',
+            },
+            customCss: [
+                './src/styles/global.css',
+              ],
             social: {
                 github: 'https://github.com/KyGuy2002/gls-docs',
             },
