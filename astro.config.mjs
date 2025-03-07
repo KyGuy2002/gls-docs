@@ -18,10 +18,11 @@ export default defineConfig({
         }
     }),
 
-    site: 'https://support.gls.ieatbeans.com',
+    site: 'https://docs.lumeninsight.net',
     integrations: [
         starlight({
-            title: 'GLS Docs',
+            title: 'Lumen Insight Docs',
+            favicon: "/lumen-logo.ico",
             components: {
                 Hero: './src/components/Hero.astro',
             },
