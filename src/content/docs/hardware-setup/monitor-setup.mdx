@@ -57,3 +57,119 @@ Please do not connect the power cable to an outlet yet.  You will be directed to
         <Image url="/monitor-setup/8.png" alt="Tighten monitor stand"/>
 
 </Steps>
+
+
+### USB C Cable
+
+<Steps>
+
+    1. Locate the USB C cable included with the monitor.
+        <Image url="/monitor-setup/9.png" alt="USB C Connector"/>
+    2. Using the previously described routing, connect the cable to the corresponding port under the monitor.
+        <Image url="/monitor-setup/10.png" alt="USB C Port on monitor"/>
+    3. The finished route should look like this:
+        <Image url="/monitor-setup/11.png" alt="Cable routed through monitor clip"/>
+
+</Steps>
+
+
+### Additional Peripherals
+Any additional devices such as keyboard, barcode scanner, or mouse can be connected in the same way.
+
+<Steps>
+
+    1. Locate their USB A cables.
+        <Image url="/monitor-setup/12.png" alt="USB A Connector"/>
+    2. Using the previously described routing, connect the cable to the corresponding port under the monitor.  Either of the USB A ports can be used.
+        <Image url="/monitor-setup/13.png" alt="USB A Ports on monitor"/>
+    3. If you need access to more USB A ports, you can use the ones on the Chromebox device.
+        <Image url="/monitor-setup/14.png" alt="USB A Ports on Chromebox"/>
+
+</Steps>
+
+
+## Chromebox Connections & Mounting
+The Chromebox device only needs a single USB C connection to function.
+The HDMI port is not used in this setup, but can be if you are using a different monitor.
+Additionally, the monitor provides power to the Chromebox via the USB C cable.  The power adapter was included for other setups but is not needed when using the recommended Dell monitor.
+
+<Steps>
+
+    1. Locate the other end of the USB C cable you previously connected to the monitor.
+        <Image url="/monitor-setup/9.png" alt="USB A Connector"/>
+    2. Connect it to either of the USB C ports on the Chromebox.
+        <Image url="/monitor-setup/15.png" alt="USB A Ports on monitor"/>
+    3. The suggested mounting location for the chromebox is on the top of the monitor stand.
+        <Image url="/monitor-setup/16.png" alt="USB A Ports on Chromebox"/>
+    4. The device can be secured using double sided 3M Tape or Velcro (Recommended).  Please ensure you leave enough room above the device for the monitor to tilt.
+        <Image url="/monitor-setup/17.png" alt="USB A Ports on Chromebox"/>
+
+</Steps>
+
+
+## Tera Barcode Scanner Configuration
+If you are using one of the recommended barcode scanners you must configure it to work with the system.
+Please scan the configuration QR codes below for your scanner model before you continue with the setup.
+
+<br/>
+<a href="/hardware-setup/scanner-config/tera-9000" target='_blank'>Tera 9000 Barcode Scanner</a>
+<br/>
+<a href="/hardware-setup/scanner-config/tera-hw0007" target='_blank'>Tera HW0007 Barcode Scanner</a>
+
+
+## Device Configuration
+
+### Power Up
+<Steps>
+    1. Connect the monitor's power cable to an outlet.
+
+    2. Press the power button on the right side behind the monitor to turn it on.
+
+    4. After a few seconds the device should boot into ChromeOS.
+</Steps>
+
+:::note
+When the monitor boots up for the first time, it may ask you a question about USB C power.  Use the small joystick on the right side behind the monitor to answer `NO` to this question.
+:::
+
+
+### ChromeBox Setup
+The ChromeBox device is very easy to set up.  All you need to do is enter your wifi information or connect an ethernet cable (recommended), and then sign in with the provided credentials.
+
+:::note
+If the device asks you to “Turn on screen reader”, simply select `Close`.
+:::
+
+:::note
+The screen may display a page saying “Searching for Bluetooth and USB devices.”  Please click `Continue`.
+:::
+
+<Steps>
+
+    1. On the welcome screen, select Get started.
+        <Image url="/monitor-setup/18.png" alt="ChromeOS Welcome screen"/>
+    2. Select your WIFI network from the list, enter the password, and click `Connect`.  If you are using Ethernet, make sure the cable is connected to either the monitor's Ethernet port or the Chromebox.
+        <Image url="/monitor-setup/19.png" alt="Select WiFi network"/>
+        <Image url="/monitor-setup/20.png" alt="USB A Ports on Chromebox"/>
+    3. You should now see a screen asking you to "Choose your device's setup".  DO NOT sign in here.  Please click the `Device Enrollment` button in the lower left corner.  If you do not see this button, your device may not be supported.
+        <Image url="/monitor-setup/21.png" alt="USB A Ports on Chromebox"/>
+    4. Navigate to the Devices page in your admin dashboard.
+        <Image url="/monitor-setup/22.png" alt="USB A Ports on Chromebox"/>
+    5. Click `Setup New Device` and then `Managed ChromeOS Device`.
+
+    6. Enter the email address and password provided to you in your dashboard.
+        <Image url="/monitor-setup/23.png" alt="USB A Ports on Chromebox"/>
+    7. Please DO NOT click the Enroll enterprise device button.  Click the `Enroll kiosk or signage device` button next to it.
+
+    8. The next screen should say “Confirm kiosk and signage device enrollment.”  Please click `Confirm`.
+
+    9. Your device should now self provision, and eventually show a success screen.  Click `Done`.
+
+    10. Finish the setup process in your admin dashboard.
+
+    11. Your device will restart automatically and present your new kiosk!
+
+
+
+
+</Steps>

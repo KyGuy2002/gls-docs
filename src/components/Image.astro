@@ -1,5 +1,5 @@
 ---
-const { url, alt } = Astro.props;
+const { url, alt, size } = Astro.props;
 ---
 
-<img src={url} alt={alt} style={{marginTop: "8px", width: "100%", maxWidth: "400px", borderRadius: "12px", border: "solid 3px gray"}}/>
+<img src={url} alt={alt} class={`rounded-xl mt-[8px] w-full border-[2px] border-gray-500 ${(size == "qr" ? "max-w-[200px]!" : "max-w-[400px]!")}`}/>

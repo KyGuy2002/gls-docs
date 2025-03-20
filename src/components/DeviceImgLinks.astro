@@ -1,0 +1,36 @@
+---
+const { src, alt, amazonLink } = Astro.props;
+import { LinkButton } from '@astrojs/starlight/components';
+---
+
+
+<div class='flex gap-x-8 flex-wrap'>
+
+    <img src={src} alt={alt} class='rounded-xl max-w-[200px]!'/>
+
+    <div style={{ display: "flex", flexDirection: "column" }}>
+
+        {amazonLink && 
+            <LinkButton
+                href={amazonLink}
+                variant="primary"
+                icon="external"
+                iconPlacement="start"
+                attrs={{ target: '_blank' }}
+            >
+                Amazon
+            </LinkButton>
+        }
+
+        <LinkButton
+            href="https://lumeninsight.net/pricing"
+            variant="secondary"
+            icon="external"
+            iconPlacement="start"
+        >
+            Hardware Guide
+        </LinkButton>
+
+    </div>
+
+</div>

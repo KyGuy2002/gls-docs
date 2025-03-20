@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -40,8 +41,9 @@ export default defineConfig({
             ],
             editLink: {
                 baseUrl: 'https://github.com/KyGuy2002/gls-docs/edit/master/',
-            }
+            },
         }),
+        sitemap(),
         react()
     ],
 
