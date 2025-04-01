@@ -1,6 +1,21 @@
 ---
+import Default from '@astrojs/starlight/components/Hero.astro';
+
+const isHomepage = Astro.locals.starlightRoute.id === '';
 ---
 
 
-<!-- Margin above hero section (not on mobile) -->
-<div style="height: clamp(0px, 0.0025vw, 20px)"/>
+
+<!-- Only override Hero on home page (not 404 or other weird pages) -->
+{
+    isHomepage ? (
+      <>
+        <!-- Margin above empty hero section (not on mobile) -->
+        <div style="height: clamp(0px, 0.0025vw, 20px)"/>
+      </>
+    ) : (
+      <Default>
+        <slot />
+      </Default>
+    )
+  }
