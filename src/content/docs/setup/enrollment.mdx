@@ -1,0 +1,63 @@
+---
+title: Device Enrollment
+description: Setup your ChromeOS device to securely launch the kiosk.
+next: false
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import Image from '/src/components/Image.astro';
+
+
+
+Enrolling your ChromeOS device is a critical step in the setup process.  This ensures that your device is securely configured to run the kiosk application and communicate with the Lumen Insight platform.  It also allows you to manage the device remotely, including updating the kiosk application and monitoring its status.
+
+:::caution
+This step is not required but is highly encoraged.  Without it, you will be responsible for managing the device and keeping it up to date.  This includes installing updates, monitoring the device's status, and troubleshooting any issues that may arise.
+:::
+
+
+
+### ChromeBox Setup
+The ChromeBox device is very easy to set up.  All you need to do is enter your wifi information or connect an ethernet cable (recommended), and then sign in with the provided credentials.
+
+:::note
+If the device asks you to “Turn on screen reader”, simply select `Close`.
+:::
+
+:::note
+The screen may display a page saying “Searching for Bluetooth and USB devices.”  Please click `Continue`.
+:::
+
+<Steps>
+
+    1. On the welcome screen, select `Get started`.
+        <Image url="/monitor-setup/18.png" alt="ChromeOS Welcome screen"/>
+    2. Select your WIFI network from the list, enter the password, and click `Connect`.  If you are using Ethernet, make sure the cable is connected to either the monitor's Ethernet port or the Chromebox.
+        <Image url="/monitor-setup/19.png" alt="Select WiFi network"/>
+        <Image url="/monitor-setup/20.png" alt="USB A Ports on Chromebox"/>
+    3. You should now see a screen asking you to "Choose your device's setup".  DO NOT sign in here.  Please click the `Device Enrollment` button in the lower left corner.  If you do not see this button, your device may not be supported.
+        <Image url="/monitor-setup/21.png" alt="USB A Ports on Chromebox"/>
+    4. Navigate to the Devices page in your admin dashboard.
+        <Image url="/monitor-setup/22.png" alt="USB A Ports on Chromebox"/>
+    5. Click `Setup New Device` and then `Managed ChromeOS Device`.
+
+    6. Enter the email address and password provided to you in your dashboard.
+        <Image url="/monitor-setup/23.png" alt="USB A Ports on Chromebox"/>
+    7. Click the `Enroll kiosk or signage device` button.
+        :::danger[Pay Attention]
+        Please DO NOT click the `Enroll enterprise device` button.  Look for the `Enroll kiosk or signage device` button.  
+        :::
+
+    8. The next screen should say “Confirm kiosk and signage device enrollment.”  Please click `Confirm`.
+
+    9. Your device should now self provision, and eventually show a success screen.  Click `Done`.
+
+    10. Finish the setup process in your admin dashboard.
+
+    11. Your device will restart automatically and present your new kiosk!
+        If nothing happens after a few moments, try power-cycling the device.
+
+
+
+
+</Steps>

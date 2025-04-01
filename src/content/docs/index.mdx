@@ -9,24 +9,24 @@ import { LinkCard, CardGrid, LinkButton  } from '@astrojs/starlight/components';
 
 
 # Welcome to the Help Center
-Learn how to setup and use your new visitor mangement system.
+Learn how to setup and use your cool new visitor mangement system.
 
 
 <LinkButton
-    href="https://lumeninsight.net"   
+    href="/setup/getting-started"   
     icon="right-arrow"
     iconPlacement="end"
 >
-    System Overview
+    Get Started
 </LinkButton>
 
 <LinkButton
-    href="/hardware-setup/monitor-setup"
+    href="https://lumeninsight.net"
     variant='minimal'
     icon="right-arrow"
     iconPlacement="end"
 >
-    Setup a Kiosk
+    Home Page
 </LinkButton>
 
 
@@ -55,14 +55,14 @@ Learn how to setup and use your new visitor mangement system.
 
     <LinkCard
 		title="Setting up a Kiosk"
-		href="/hardware-setup/monitor-setup"
-		description="Assemble and configure a kiosk to display your GLS system."
+		href="/setup/getting-started"
+		description="Assemble and configure a kiosk to display your system."
 	/>
 
 	<LinkCard
-		title="Configuring Tera 9000 Scanner"
-		href="/hardware-setup/scanner-config/tera-9000"
-		description="Prepare your barcode scanner to work with your new system."
+		title="Device Enrollment"
+		href="/setup/enrollment"
+		description="Setup your ChromeOS device to securely launch the kiosk."
 	/>
 
 </CardGrid>

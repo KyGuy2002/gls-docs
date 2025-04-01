@@ -19,6 +19,10 @@ export default defineConfig({
         }
     }),
 
+    redirects: {
+        "/hardware-setup/monitor-setup": "/setup/getting-started",
+    },
+
     site: 'https://docs.lumeninsight.net',
     integrations: [
         starlight({
@@ -35,8 +39,18 @@ export default defineConfig({
             },
             sidebar: [
                 {
-                    label: 'Hardware Setup',
-                    autogenerate: { directory: 'hardware-setup' },
+                    label: 'System Setup',
+                    items: [
+                        'setup/getting-started',
+                        'setup/hardware',
+                        'setup/scanner',
+                        'setup/enrollment',
+                        {
+                            label: 'Scanner Config',
+                            collapsed: true,
+                            autogenerate: { directory: 'setup/scanner-config' },
+                        },
+                    ],
                 },
             ],
             editLink: {
