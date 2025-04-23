@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
+import starlightSidebarTopics from 'starlight-sidebar-topics';
+import starlightAutoSidebar from 'starlight-auto-sidebar';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -34,28 +36,60 @@ export default defineConfig({
             customCss: [
                 './src/styles/global.css',
               ],
-            social: {
-                github: 'https://github.com/KyGuy2002/gls-docs',
-            },
-            sidebar: [
+            social: [
                 {
-                    label: 'System Setup',
-                    items: [
-                        'setup/getting-started',
-                        'setup/hardware',
-                        'setup/scanner',
-                        'setup/enrollment',
-                        {
-                            label: 'Scanner Config',
-                            collapsed: true,
-                            autogenerate: { directory: 'setup/scanner-config' },
-                        },
-                    ],
+                    icon: 'github',
+                    label: 'GitHub',
+                    href: 'https://github.com/KyGuy2002/gls-docs'
                 },
+                {
+                    icon: 'email',
+                    label: 'Support',
+                    href: 'mailto:support@lumeninsight.net'
+                }
             ],
             editLink: {
                 baseUrl: 'https://github.com/KyGuy2002/gls-docs/edit/master/',
             },
+            plugins: [
+                starlightAutoSidebar(),
+                starlightSidebarTopics([
+                    {
+                        label: 'User Guide',
+                        link: '/user-guide/setup/getting-started',
+                        icon: 'open-book',
+                        items: [
+                            {
+                                label: 'Start Here',
+                                autogenerate: { directory: 'user-guide/setup' },
+                            },
+                            {
+                                label: 'Misc',
+                                autogenerate: { directory: 'user-guide/misc' },
+                            },
+                        ],
+                    },
+                    {
+                        label: 'API Docs',
+                        link: '/api-doc/start/auth',
+                        icon: 'seti:html',
+                        items: [
+                            {
+                                label: 'Start Here',
+                                autogenerate: { directory: 'api-doc/start' },
+                            },
+                            {
+                                label: 'Data',
+                                autogenerate: { directory: 'api-doc/data' },
+                            },
+                            {
+                                label: 'Content',
+                                autogenerate: { directory: 'api-doc/content' },
+                            },
+                        ],
+                    },
+                ]),
+            ],
         }),
         sitemap(),
         react()

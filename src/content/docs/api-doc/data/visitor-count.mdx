@@ -1,0 +1,30 @@
+---
+title: Visitor Count
+description: Securely authenticate your service to access the API.
+badge:
+    text: TODO
+    variant: tip
+next: false
+prev: false
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+<Badge text="GET" variant="note" /> /api/metrics/visitor-count
+
+### Path Parameters
+`startDate` - The date of the first record included (Unix Epoch format).<br/>
+`endDate` - The date of the last record included (Unix Epoch format).<br/>
+`siteId` - Optional.
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_VISITOR_COUNT" variant="caution" />
+
+
+### Response
+```json
+123
+```

@@ -1,0 +1,51 @@
+---
+title: Edit Announcements
+description: This endpoint allows you to edit announcements that are displayed on the stats TV displays.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: PUT
+    variant: note
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="PUT" variant="note" size="large"/> /api/announcement
+This endpoint allows you to edit announcements that are displayed on the stats TV displays.
+
+:::danger
+This endpoint will delete all existing announcements and replace them with the content you provide.
+:::
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="EDIT_ANNOUNCEMENTS" variant="caution" />
+
+
+### Request Body
+```json
+[
+    {
+        "title": string,
+        "message": string,
+        "timestamp": timestamp
+    },
+    {...}
+]
+```
+<details>
+    <summary>title</summary>
+    Primary text of the announcement.
+</details>
+<details>
+    <summary>message</summary>
+    Secondary long form text for the announcement.
+</details>
+<details>
+    <summary>timestamp</summary>
+    Unix Epoch format (millis). This is the time when the announcement was created.  This will be displayed on the stats TV displays and is used to determine the order of announcements.
+</details>

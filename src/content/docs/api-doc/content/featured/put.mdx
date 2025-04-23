@@ -1,0 +1,76 @@
+---
+title: Edit Featured Items
+description: This endpoint allows you to edit featured items that are displayed on the stats TV displays.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: PUT
+    variant: note
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="PUT" variant="note" size="large"/> /api/featured-company
+This endpoint allows you to edit featured items that are displayed on the stats TV displays.
+
+:::danger
+This endpoint will delete all existing items and replace them with the content you provide.
+:::
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="EDIT_FEATURED_ITEMS" variant="caution" />
+
+
+### Request Body
+```json
+[
+    {
+        "name": string,
+        "description": string,
+        "link": string,
+        "type": "logo" | "basic",
+        "backgroundImageUuid": string,
+        "logoImageUuid": string
+    },
+    {...}
+]
+```
+<details>
+    <summary>name</summary>
+    Primary text of the item (company name).
+</details>
+<details>
+    <summary>description</summary>
+    Secondary long form text for the item.<br/>
+    Note: longer text may cause layout issues.
+</details>
+<details>
+    <summary>link</summary>
+    Readable shortened link.<br/>
+    This will be displayed on the stats TV displays.<br/>
+    It is recommended to leave out schema (http/https) and trailing slashes.
+</details>
+<details>
+    <summary>type</summary>
+    Type of card layout.<br/>
+    Logo version contains a logo and a background image.<br/>
+    Basic version contains a background image only.
+</details>
+<details>
+    <summary>backgroundImageUuid <Badge text="Optional" variant="default" /></summary>
+    UUID of the background image.<br/>
+    This should refer to an image uploaded to the system.<br/>
+    [Learn how to upload images](/api-doc/content/upload-images/how-to/)
+</details>
+<details>
+    <summary>logoImageUuid <Badge text="Optional" variant="default" /></summary>
+    UUID of the logo image.<br/>
+    This should refer to an image uploaded to the system.<br/>
+    This will only be used if the type is "logo".<br/>
+    [Learn how to upload images](/api-doc/content/upload-images/how-to/)
+</details>

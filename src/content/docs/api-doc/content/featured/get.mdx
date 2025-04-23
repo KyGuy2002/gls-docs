@@ -1,0 +1,75 @@
+---
+title: Get Featured Items
+description: This endpoint retrieves a list of featured items that are displayed on the stats TV displays.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/featured-company
+This endpoint retrieves a list of featured items that are displayed on the stats TV displays.
+
+
+### Query Parameters
+<details>
+    <summary>siteId</summary>
+    ID of the subsite to filter items by.  Default is "main".
+</details>
+
+
+### Response Body
+```json
+[
+    {
+        "name": string,
+        "description": string,
+        "link": string,
+        "type": "logo" | "basic",
+        "backgroundImageUuid": string,
+        "logoImageUuid": string
+    },
+    {...}
+]
+```
+<details>
+    <summary>name</summary>
+    Primary text of the item (company name).
+</details>
+<details>
+    <summary>description</summary>
+    Secondary long form text for the item.
+</details>
+<details>
+    <summary>link</summary>
+    Readable shortened link.
+</details>
+<details>
+    <summary>type</summary>
+    Type of card layout.<br/>
+    Logo version contains a logo and a background image.<br/>
+    Basic version contains a background image only.
+</details>
+<details>
+    <summary>backgroundImageUuid</summary>
+    UUID of the background image.
+    ```text "{uuid}"
+    https://res.cloudinary.com/drimvo8rp/image/upload/t_featured-company-full/v1674796880/featured-company/{uuid}
+    ```
+    [Learn how image uploading works](/api-doc/content/upload-images/how-to/)
+</details>
+<details>
+    <summary>logoImageUuid</summary>
+    UUID of the logo image.<br/>
+    This will only be used if the type is "logo".
+    ```text "{uuid}"
+    https://res.cloudinary.com/drimvo8rp/image/upload/t_featured-company-logo/v1674796880/featured-company-logo/{uuid}
+    ```
+    [Learn how image uploading works](/api-doc/content/upload-images/how-to/)
+</details>

@@ -1,0 +1,56 @@
+---
+title: Sign Cloudinary Request
+description: This endpoint creates an upload signature for Cloudinary.  This is used to upload images to the Lumen Insight system.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: PUT
+    variant: note
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="note" size="large"/> /api/upload/sign
+This endpoint creates an upload signature for Cloudinary.  This is used to upload images to the Lumen Insight system.
+
+
+### Query Parameters
+<details>
+    <summary>public_id</summary>
+    UUID of the image.<br/>
+    This is the same UUID used in the "backgroundImageUuid" and "logoImageUuid" fields of the featured items.
+</details>
+<details>
+    <summary>upload_preset</summary>
+    "featured-company-logo" or "featured-company-full".
+</details>
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="EDIT_FEATURED_ITEMS" variant="caution" />
+
+
+### Response Body
+```json
+{
+    "signature": string,
+    "timestamp": timestamp,
+    "apiKeyId": string
+}
+```
+<details>
+    <summary>signature</summary>
+    Generated one-time signature used to authenticate the upload request to Cloudinary.
+</details>
+<details>
+    <summary>timestamp</summary>
+    Unix Epoch format (millis).
+</details>
+<details>
+    <summary>apiKeyId</summary>
+    Another paramater used to authenticate the upload request to Cloudinary.
+</details>

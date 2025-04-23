@@ -1,0 +1,49 @@
+---
+title: Get Announcements
+description: This endpoint retrieves a list of announcements that are displayed on the stats TV displays.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/announcement
+This endpoint retrieves a list of announcements that are displayed on the stats TV displays.
+
+
+### Query Parameters
+<details>
+    <summary>siteId</summary>
+    ID of the subsite to filter announcements by.  Default is "main".
+</details>
+
+
+### Response Body
+```json
+[
+    {
+        "title": string,
+        "message": string,
+        "timestamp": timestamp
+    },
+    {...}
+]
+```
+<details>
+    <summary>title</summary>
+    Primary text of the announcement.
+</details>
+<details>
+    <summary>message</summary>
+    Secondary long form text for the announcement.
+</details>
+<details>
+    <summary>timestamp</summary>
+    Unix Epoch format (millis). This is the time when the announcement was created.  This will be displayed on the stats TV displays and is used to determine the order of announcements.
+</details>

@@ -1,0 +1,45 @@
+---
+title: Log
+description: Securely authenticate your service to access the API.
+next: false
+prev: false
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+<Badge text="GET" variant="note" /> /api/log
+
+### Path Parameters
+`memberFirstName` - First name of the member to filter logs by.<br/>
+`memberLastName` - Last name of the member to filter logs by.<br/>
+`startDate` - The date of the first record included (Unix Epoch format).<br/>
+`endDate` - The date of the last record included (Unix Epoch format).<br/>
+`siteId` - Optional.
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_VISITOR_COUNT" variant="caution" />
+
+
+### Response
+```json
+{
+    "logs": [
+        {
+            "first_name"
+            "id": 1,
+            "memberId": 123,
+            "action": "login",
+            "timestamp": 1672531199000
+        },
+        {
+        "id": 2,
+        "memberId": 456,
+        "action": "logout",
+        "timestamp": 1672531200000
+        }
+    ]
+}
+```

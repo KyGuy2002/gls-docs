@@ -1,0 +1,66 @@
+---
+title: How to Upload Images
+description: This endpoint retrieves a list of upcoming calendar events that are displayed on the stats TV displays.
+next: false
+prev: false
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
+import Image from '/src/components/Image.astro';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+This guide will walk you through the process of uploading images to Cloudinary.<br/>
+This is a two-step process that involves signing the request and then uploading the image.
+
+<Steps>
+
+    1. Generate a new random UUID for the image.
+
+    2. Make a request to the [Sign Cloudinary Request](/api-doc/content/upload-images/sign/) API to request a Cloudinary upload signature.
+        Pass the UUID as the `public_id` parameter and set the `upload_preset` parameter to either `featured-company-logo` or `featured-company-full` depending on the type of image you are uploading.
+
+    3. Compile request data.
+        <Tabs syncKey="lang">
+            <TabItem label="Javascript">
+                ```js
+                const formData = new FormData();
+                formData.append("file", file); // The file to upload
+                formData.append("upload_preset", preset);
+                formData.append("public_id", uuid);
+                formData.append("api_key", apiKeyId); // From the sign request
+                formData.append("timestamp", timestamp); // From the sign request
+                formData.append("signature", signature); // From the sign request
+                ```
+            </TabItem>
+        </Tabs>
+
+    4. Make the request.
+        <Tabs syncKey="lang">
+            <TabItem label="Javascript">
+                ```js
+                await axios.put(
+                    "https://api.cloudinary.com/v1_1/drimvo8rp/image/upload",
+                    formData, // From the previous step
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                        method: "POST"
+                    }
+                );
+                ```
+            </TabItem>
+        </Tabs>
+
+</Steps>
+
+You can access these images using the Cloudinary URL format:
+```text "{upload_preset}" "{uuid}" "{folder}"
+https://res.cloudinary.com/drimvo8rp/image/upload/t_{upload_preset}/v1674796880/{folder}/{uuid}
+```
+
+<details>
+    <summary>folder</summary>
+    The folder is either `featured-company-logo` or `featured-company` depending on the type of image you are uploading.
+</details>

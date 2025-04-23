@@ -1,0 +1,82 @@
+---
+title: Get Upcoming Events
+description: This endpoint retrieves a list of upcoming calendar events that are displayed on the stats TV displays.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/calendar
+This endpoint retrieves a list of upcoming calendar events that are displayed on the stats TV displays.
+
+
+### Query Parameters
+<details>
+    <summary>calId</summary>
+    Google Calendar ID<br/>
+    [Learn where to find this ID](/user-guide/misc/find-google-id/)
+</details>
+
+
+### Response Body
+```json
+[
+    {
+        "name": string,
+        "type": "NORMAL" | "ALL_DAY" | "STARTS_AT_BEGINNING_OF_DAY" | "GOES_TILL_END_OF_DAY",
+        "start": timestamp,
+        "startIso": string,
+        "end": timestamp,
+        "endIso": string,
+        "day": timestamp,
+        "dayIso": string
+    },
+    {...}
+]
+```
+<details>
+    <summary>name</summary>
+    Event title.
+</details>
+<details>
+    <summary>type</summary>
+    Type of event.  This determines how the event is displayed on the stats TV displays.<br/>
+    If type is "NORMAL", all **except** the "day" and "dayIso" fields will be present.<br/>
+    If type is "ALL_DAY", only the "day" and "dayIso" fields will be present.<br/>
+    If type is "STARTS_AT_BEGINNING_OF_DAY", only the "end" and "endIso" fields will be present.<br/>
+    If type is "GOES_TILL_END_OF_DAY", only the "start" and "startIso" fields will be present.
+</details>
+<details>
+    <summary>start</summary>
+    Unix Epoch format (millis).  This is the time when the event starts.  This will be displayed on the stats TV displays and is used to determine the order of events.
+</details>
+<details>
+    <summary>startIso</summary>
+    ISO 8601 formatted date string.
+    Example: "2025-04-22T17:00:00.000-07:00"
+</details>
+<details>
+    <summary>end</summary>
+    Unix Epoch format (millis).  This is the time when the event ends.  This will be displayed on the stats TV displays and is used to determine the order of events.
+</details>
+<details>
+    <summary>endIso</summary>
+    ISO 8601 formatted date string.
+    Example: "2025-04-22T17:00:00.000-07:00"
+</details>
+<details>
+    <summary>day</summary>
+    Unix Epoch format (millis).  This is any time on the day of the event.  This is used to determine the date of the event.  This will be displayed on the stats TV displays and is used to determine the order of events.
+</details>
+<details>
+    <summary>dayIso</summary>
+    ISO 8601 formatted date string.
+    Example: "2025-05-15T00:00:00.000-07:00"
+</details>
