@@ -1,0 +1,182 @@
+---
+title: Get All Appointments
+description: This endpoint retrieves a list of upcoming days and the appointments that take place on those days.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/dashboard/appointments
+This endpoint retrieves a list of upcoming days and the appointments that take place on those days.
+
+
+### Query Parameters
+<details>
+    <summary>startTimestamp <Badge text="Optional" variant="default" /></summary>
+    Unix Epoch format (millis). This is the start date of the range to filter appointments by.
+</details>
+<details>
+    <summary>appId <Badge text="Optional" variant="default" /></summary>
+    ID of the appointment for which you want to retrieve data.<br/>
+    When this parameter is provided, the endpoint will return data for that specific appointment as well as all other appointments that are scheduled for the same day.
+</details>
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_APPOINTMENTS" variant="caution" />
+
+
+### Response Body
+```json
+[
+    {
+        "timestamp": timestamp,
+        "isDefaultDisabled": boolean,
+        "items": Appointment[],
+    },
+    {...}
+]
+```
+<details>
+    <summary>timestamp</summary>
+    Unix Epoch format (millis). This is the time at the start of the day.
+</details>
+<details>
+    <summary>isDefaultDisabled</summary>
+    If this day is disabled due to the work-week schedule.<br/>
+    Visitors cannot create appointments on these days.
+</details>
+<details>
+    <summary>items</summary>
+    Array of appointments on this day.
+
+    ```json
+    [
+        {
+            "typeApp": true,
+            "id": string,
+            "startTimestamp": timestamp,
+            "hoursLength": number,
+            "endTimestamp": timestamp,
+            "isApproved": boolean,
+            "tools": string[],
+            "members": Member[],
+            "customFields": {
+                "{field_id}": "{field_value}",
+            },
+            "conflictsWithIds": string[],
+            "creatorFirstName": string,
+            "creatorLastName": string,
+            "creatorEmail": string
+        },
+        {...}
+    ]
+    ```
+    <details>
+        <summary>id</summary>
+        UUID of the appointment.
+    </details>
+    <details>
+        <summary>startTimestamp</summary>
+        Unix Epoch format (millis). This is the start time of the appointment.
+    </details>
+    <details>
+        <summary>hoursLength</summary>
+        How many hours long this appointment is.
+    </details>
+    <details>
+        <summary>endTimestamp</summary>
+        Unix Epoch format (millis). This is the end time of the appointment.
+    </details>
+    <details>
+        <summary>isApproved</summary>
+        If this appointment has been approved by a system administrator.
+    </details>
+    <details>
+        <summary>tools</summary>
+        Array of tools that are required for this appointment.<br/>
+        The possible values for this are defined in the system config.
+    </details>
+    <details>
+        <summary>members</summary>
+        Array of members in this appointment.
+
+        ```json
+        [
+            {
+                "appointmentId": string,
+                "email": string,
+                "firstName": string | null,
+                "lastName": string | null,
+                "isCreator": boolean,
+                "registrationTimestamp": timestamp | null,
+                "isRegistered": boolean
+            },
+            {...}
+        ]
+        ```
+        <details>
+            <summary>appointmentId</summary>
+            UUID of the appointment.
+        </details>
+        <details>
+            <summary>email</summary>
+            Email address of the member.<br/>
+        </details>
+        <details>
+            <summary>firstName <Badge text="Nullable" variant="danger" /></summary>
+            First name of the member.<br/>
+            This field may be null if the member does not yet exist in the system and the appointment creator has only added their email address.
+        </details>
+        <details>
+            <summary>lastName <Badge text="Nullable" variant="danger" /></summary>
+            Last name of the member.<br/>
+            This field may be null if the member does not yet exist in the system and the appointment creator has only added their email address.
+        </details>
+        <details>
+            <summary>isCreator</summary>
+            If this member is the creator of the appointment.<br/>
+            If this is true, a "firstName", "lastName", and "registrationTimestamp" will also exist.
+        </details>
+        <details>
+            <summary>registrationTimestamp <Badge text="Nullable" variant="danger" /></summary>
+            The time at which this member completed their standard registration.<br/>
+            This field may be null if the member has not yet registered.
+        </details>
+        <details>
+            <summary>isRegistered</summary>
+            If this member has completed their standard registration.
+        </details>
+    
+    </details>
+    <details>
+        <summary>customFields</summary>
+        Object of custom fields from the appointment request form and their responses.<br/>
+        The possible values for this are defined in the system config.
+    </details>
+    <details>
+        <summary>conflictsWithIds</summary>
+        Array of appointment IDs that also occur at the same time as this appointment (they overlap).
+    </details>
+    <details>
+        <summary>creatorFirstName</summary>
+        First name of the appointment creator.
+    </details>
+    <details>
+        <summary>creatorLastName</summary>
+        Last name of the appointment creator.
+    </details>
+    <details>
+        <summary>creatorEmail</summary>
+        Email address of the appointment creator.
+    </details>
+
+</details>

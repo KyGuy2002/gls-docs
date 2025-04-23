@@ -79,12 +79,12 @@ export default defineConfig({
                                 autogenerate: { directory: 'api-doc/start' },
                             },
                             {
-                                label: 'Data',
-                                autogenerate: { directory: 'api-doc/data' },
-                            },
-                            {
                                 label: 'Content',
                                 autogenerate: { directory: 'api-doc/content' },
+                            },
+                            {
+                                label: 'Appointments',
+                                autogenerate: { directory: 'api-doc/appointments' },
                             },
                         ],
                     },

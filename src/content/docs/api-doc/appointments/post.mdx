@@ -1,0 +1,80 @@
+---
+title: Request an Appointment
+description: This endpoint allows you to request a new appointment.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: POST
+    variant: tip
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="POST" variant="tip" size="large"/> /api/portal/appointment/create
+This endpoint allows you to request a new appointment.
+:::note
+Upon appointment creation, an email will be sent to the creator, all members, as well as any system admin with the "APPOINTMENT_REQUESTED" notification enabled.
+:::
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="IMPERSONATE_PORTAL_USER" variant="caution" /><br/>
+You must also include these headers to identify the **registered** user making the request:
+```http
+X-Impersonated-User-First-Name: {firstName}
+X-Impersonated-User-Last-Name: {lastName}
+X-Impersonated-User-Email: {email}
+```
+
+
+### Request Body
+```json
+{
+    "startTimestamp": timestamp,
+    "hoursLength": number,
+    "tools": string[],
+    "members": Member[],
+    "customFields": {
+        "{field_id}": "{field_value}",
+    },
+}
+```
+<details>
+    <summary>startTimestamp</summary>
+    Unix Epoch format (millis). This is the start time of the appointment.
+</details>
+<details>
+    <summary>hoursLength</summary>
+    How many hours long this appointment is.
+</details>
+<details>
+    <summary>tools</summary>
+    Array of tools that are required for this appointment.<br/>
+    The possible values for this are defined in the system config.
+</details>
+<details>
+    <summary>members</summary>
+    Array of members emails in this appointment.<br/>
+    These users do not need to be registered users in the system, but if they are then their names will be displayed on the appointment details page.<br/>
+</details>
+<details>
+    <summary>customFields</summary>
+    Object of custom fields from the appointment request form and their responses.<br/>
+    The possible values for this are defined in the system config.
+</details>
+
+
+### Response Body
+```json
+{
+    "id": string
+}
+```
+<details>
+    <summary>id</summary>
+    UUID of the newly created appointment.
+</details>

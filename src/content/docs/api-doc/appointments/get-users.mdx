@@ -1,0 +1,63 @@
+---
+title: Get a Users Appointments
+description: This endpoint retrieves a list of upcoming appointments for a user.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/portal/appointment
+This endpoint retrieves a list of upcoming appointments for a user.
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="IMPERSONATE_PORTAL_USER" variant="caution" /><br/>
+You must also include these headers to identify the **registered** user making the request:
+```http
+X-Impersonated-User-First-Name: {firstName}
+X-Impersonated-User-Last-Name: {lastName}
+X-Impersonated-User-Email: {email}
+```
+
+
+### Response Body
+```json
+[
+    {
+        "id": string,
+        "startTimestamp": timestamp,
+        "hoursLength": number,
+        "isApproved": boolean,
+        "isCreator": boolean,
+    },
+    {...}
+]
+```
+<details>
+    <summary>id</summary>
+    UUID of the appointment.
+</details>
+<details>
+    <summary>startTimestamp</summary>
+    Unix Epoch format (millis). This is the start time of the appointment.
+</details>
+<details>
+    <summary>hoursLength</summary>
+    Length of the appointment in hours.
+</details>
+<details>
+    <summary>isApproved</summary>
+    If the appointment has been approved or not.
+</details>
+<details>
+    <summary>isCreator</summary>
+    If the user making the request is the creator of the appointment.
+</details>

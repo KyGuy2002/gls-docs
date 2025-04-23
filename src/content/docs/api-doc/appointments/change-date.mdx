@@ -1,0 +1,52 @@
+---
+title: Edit Appointment Date
+description: This endpoint allows you to update the date and time of an existing appointment.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: POST
+    variant: tip
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="POST" variant="tip" size="large"/> /api/dashboard/appointments/changeDate
+This endpoint allows you to update the date and time of an existing appointment.<br/>
+An appointment can be edited if it has already been approved or not.
+:::note
+Upon appointment update, an email will be sent to the creator and all members.<br/>
+Additionally, if the appointment has previously been approved and the Google Calendar integration is setup then the event will be updated in the calendar.
+:::
+:::note
+The appointment **WILL BE APPROVED** (if it was not already) after updating the date or time.
+:::
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_APPOINTMENTS" variant="caution" /><br/>
+
+
+### Request Body
+```json
+{
+    "id": string,
+    "startTimestamp": timestamp,
+    "endTimestamp": timestamp
+}
+```
+<details>
+    <summary>id</summary>
+    UUID of the appointment.
+</details>
+<details>
+    <summary>startTimestamp</summary>
+    Unix Epoch format (millis). This is the start time of the appointment.
+</details>
+<details>
+    <summary>endTimestamp</summary>
+    Unix Epoch format (millis). This is the end time of the appointment.
+</details>

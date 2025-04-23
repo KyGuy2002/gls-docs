@@ -1,0 +1,66 @@
+---
+title: Get Availability
+description: This endpoint retrieves a list of days and their availability.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/portal/calendar
+This endpoint retrieves a list of days and their availability.
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="IMPERSONATE_PORTAL_USER" variant="caution" /><br/>
+You must also include these headers to identify the **registered** user making the request:
+```http
+X-Impersonated-User-First-Name: {firstName}
+X-Impersonated-User-Last-Name: {lastName}
+X-Impersonated-User-Email: {email}
+```
+
+
+### Request Body
+```json
+{
+    "startTimestamp": timestamp
+}
+```
+<details>
+    <summary>startTimestamp <Badge text="Optional" variant="default" /></summary>
+    Unix Epoch format (millis). This is the start time for the range to filter days by.
+</details>
+
+
+
+### Response Body
+```json
+[
+    {
+        "timestamp": timestamp,
+        "isBlocked": boolean,
+        "alreadyHasTools": string[]
+    },
+    {...}
+]
+```
+<details>
+    <summary>timestamp</summary>
+    Unix Epoch format (millis). This is the start of the day.
+</details>
+<details>
+    <summary>isBlocked</summary>
+    If this specific day has been manually disabled by an admin.
+</details>
+<details>
+    <summary>alreadyHasTools</summary>
+    Array of tools that are already booked for this day.
+</details>

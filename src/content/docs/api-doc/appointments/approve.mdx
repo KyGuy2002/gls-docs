@@ -1,0 +1,38 @@
+---
+title: Approve an Appointment
+description: This endpoint allows you to approve a requested appointment.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: POST
+    variant: tip
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="POST" variant="tip" size="large"/> /api/dashboard/appointments/approve
+This endpoint allows you to approve a requested appointment.
+:::note
+Upon appointment approval, an email will be sent to the creator and all members.<br/>
+Additionally, if the Google Calendar integration is setup then an event will be created in the calendar.
+:::
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_APPOINTMENTS" variant="caution" /><br/>
+
+
+### Request Body
+```json
+{
+    "id": string
+}
+```
+<details>
+    <summary>id</summary>
+    UUID of the appointment.
+</details>
