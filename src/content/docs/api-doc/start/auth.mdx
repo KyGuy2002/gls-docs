@@ -5,7 +5,63 @@ next: false
 prev: false
 ---
 
+import { Steps, Badge } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
+import Image from '/src/components/Image.astro';
 
 
 
-Todo this page!
+Authenticating with the Lumen Insight API is super simple.  All you need is an API key with sufficient permissions.
+
+
+## Generate an API Key
+API keys can be generated within your systems dashboard.
+<Steps>
+
+    1. Log in to your Lumen Insight dashboard.
+
+    2. Navigate to the `API Keys` page.<br/>
+        If you don't see this page then you may not have permission.  Please contact your administrator to get access.
+    
+    3. Click the `Create API Key` button.
+
+    4. Choose a memorable name for your API key.  This is just for you to identify it with in audit logs.
+
+    5. Select the permissions you want to grant this API key.<br/>
+        Please only select the permissions you need.  The more permissions you select, the more risk you are taking on.
+
+    6. Click `Create` and copy the API key to your clipboard.<br/>
+        :::danger
+        This is the only time you will be able to see this API key.  If you lose it, you will need to create a new one.
+        :::
+
+</Steps>
+
+
+## Using the API Key
+Add the API key header to all your requests to the Lumen Insight API.  The header should look like this:
+```http
+X-API-KEY: <your-api-key>
+```
+
+
+## Impersonating Portal Users
+Some API endpoints are designed to be used by visitors through the registration portal.<br/>
+You can impersonate any user to perform actions on their behalf.  This is useful for automating appointment requests or registrations.
+
+Your API key will need the permission: <Badge text="IMPERSONATE_PORTAL_USER" variant="caution" /><br/>
+:::note
+No other permissions are required to impersonate a user.<br/>
+Anything that can be done from the portal can be done with this single permission.
+:::
+
+You must also include these headers (in addition to the `X-API-KEY` header) to identify the **registered** user making the request:
+```http
+X-IMPERSONATED-USER-FIRST-NAME: <first-name>
+X-IMPERSONATED-USER-LAST-NAME: <last-name>
+X-IMPERSONATED-USER-EMAIL: <email>
+```
+
+:::note
+Only **registered users** can be impersonated.
+:::
