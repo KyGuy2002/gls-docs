@@ -54,7 +54,7 @@ This endpoint requires authentication. You must include a valid API key in the r
     If this day is disabled due to the work-week schedule.<br/>
     Visitors cannot create appointments on these days.
 </details>
-<details>
+<details open>
     <summary>items</summary>
     Array of appointments on this day.
 
@@ -108,6 +108,9 @@ This endpoint requires authentication. You must include a valid API key in the r
     <details>
         <summary>members</summary>
         Array of members in this appointment.
+        :::note
+        The creator will also be included in this array.
+        :::
 
         ```json
         [

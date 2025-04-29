@@ -1,0 +1,152 @@
+---
+title: Get Visitor Info
+description: This endpoint retrieves all the information on a specific visitor.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/dashboard/user
+This endpoint retrieves all the information on a specific visitor.
+
+
+### Query Parameters
+<details>
+    <summary>fName</summary>
+    First name of the visitor.
+</details>
+<details>
+    <summary>lName</summary>
+    Last name of the visitor.
+</details>
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_USER_INFO" variant="caution" />
+
+
+### Response Body
+```json
+{
+    "email": string,
+    "registrationTimestamp": timestmap | null,
+    "registeredFirstPrompt": boolean | null,
+    "registrationSource": "kiosk" | "website" | null,
+    "currentSite": string | "undefined",
+    "askedCard": true | null,
+    "hasPass": 1 | 0,
+    "lastProject": string | "Other",
+    "lastSeen": timestamp | undefined,
+    "appointmentHistory": Appointment[],
+    "customRegData": {
+        "{field_id}": "{field_value}",
+    }
+}
+```
+
+<details>
+    <summary>email</summary>
+    Email address of the visitor.
+</details>
+<details>
+    <summary>registrationTimestamp <Badge text="Nullable" variant="danger" /></summary>
+    Unix Epoch format (millis). This is the time when the visitor registered.<br/>
+    This field may be null if the visitor has not registered.
+</details>
+<details>
+    <summary>registeredFirstPrompt <Badge text="Nullable" variant="danger" /></summary>
+    Whether the visitor registered on the kiosk immediately after we asked.<br/>
+    This field may be null if the visitor has not registered.
+</details>
+<details>
+    <summary>registrationSource <Badge text="Nullable" variant="danger" /></summary>
+    Where the visitor registered from.  Either "kiosk" or "website".<br/>
+    This field may be null if the visitor has not registered.
+</details>
+<details>
+    <summary>currentSite</summary>
+    ID of the subsite the visitor is physically present (signed in) at.<br/>
+    This field will be "undefined" if the visitor has not signed in today or has since signed out. (not present)
+</details>
+<details>
+    <summary>askedCard <Badge text="Nullable" variant="danger" /></summary>
+    Whether the visitor has been offered a physical access card.<br/>
+    This field may be null.
+    :::note
+    This feature may not be enabled for your system.
+    :::
+</details>
+<details>
+    <summary>hasPass</summary>
+    Whether the visitor has a physical access card setup.
+    :::note
+    This feature may not be enabled for your system.
+    :::
+</details>
+<details>
+    <summary>lastProject</summary>
+    Name of the project the visitor selected on their last sign in.<br/>
+    This field will be "Other" if the visitor has never selected a project **or** if they selected "Other" on their last sign in.
+</details>
+<details>
+    <summary>lastSeen</summary>
+    Unix Epoch format (millis). This is the time when the visitor has last signed in **or** out.
+</details>
+<details>
+    <summary>appointmentHistory</summary>
+    List of appointments the visitor has made.<br/>
+    See [Get All Appointments](/api-doc/appointments/get/) to get more appointment details from the `id`.
+
+    ```json
+    [
+        {
+            "id": string,
+            "startTimestamp": timestamp,
+            "hoursLength": number,
+            "endTimestamp": timestamp,
+            "isApproved": boolean,
+            "tools": string[]
+        },
+        {...}
+    ]
+    ```
+
+    <details>
+        <summary>id</summary>
+        ID of the appointment.
+    </details>
+    <details>
+        <summary>startTimestamp</summary>
+        Unix Epoch format (millis). This is the time when the appointment starts.
+    </details>
+    <details>
+        <summary>hoursLength</summary>
+        How long the appointment is in hours.
+    </details>
+    <details>
+        <summary>endTimestamp</summary>
+        Unix Epoch format (millis). This is the time when the appointment ends.
+    </details>
+    <details>
+        <summary>isApproved</summary>
+        Whether the appointment is approved.
+    </details>
+    <details>
+        <summary>tools</summary>
+        List of tools the visitor has requested for the appointment.
+    </details>
+
+</details>
+<details>
+    <summary>customRegData</summary>
+    Object of custom fields from registration form and their responses.<br/>
+    The possible values for this are defined in the system config.
+</details>
