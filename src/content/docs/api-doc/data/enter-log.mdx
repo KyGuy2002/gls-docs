@@ -1,0 +1,123 @@
+---
+title: Log Entry/Exit
+description: This endpoint logs a visitors entry or exit.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: POST
+    variant: tip
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="POST" variant="tip" size="large"/> /api/kiosk/enter-exit
+This endpoint logs a visitors entry or exit.
+
+
+### Query Parameters
+<details>
+    <summary>siteId</summary>
+    ID of the subsite the user is entering.  Default is "main".
+</details>
+
+
+### Request Body
+```json
+{
+    "first_name": string,
+    "last_name": string,
+    "uuid": string,
+    "card_type": "CAC" | "MANUAL" | "ID",
+}
+```
+<details>
+    <summary>first_name</summary>
+    First name of the visitor.
+</details>
+<details>
+    <summary>last_name</summary>
+    Last name of the visitor.
+</details>
+**OR**
+<details>
+    <summary>uuid</summary>
+    UUID of the plastic access card.
+    :::note
+    This feature may not be enabled for your system.
+    :::
+</details>
+<br/>
+<details>
+    <summary>card_type</summary>
+    Type of entry method used by the visitor.
+</details>
+
+
+### Response Body
+```json
+{
+    "first_name": string,
+    "last_name": string,
+    "direction": "enter" | "exit",
+    "project": string,
+    "is_registered": boolean,
+    "has_email": boolean,
+    "is_new": boolean,
+    "asked_card": boolean,
+    "prev_used_any_card": boolean | undefined,
+    "appointment": {
+        "endTimestamp": timestamp,
+        "id": string,
+    }
+}
+```
+<details>
+    <summary>first_name</summary>
+    First name of the visitor.
+</details>
+<details>
+    <summary>last_name</summary>
+    Last name of the visitor.
+</details>
+<details>
+    <summary>direction</summary>
+    Direction the visitor was going (based on previous state.)<br/>
+    This is useful to customize the message and flow for the visitor.
+</details>
+<details>
+    <summary>project</summary>
+    Name of the project the visitor had previously selected during their last visit.<br/>
+    Default to "Other" if the visitor has not selected a project.  Note "Other" is also a valid project selection.
+</details>
+<details>
+    <summary>is_registered</summary>
+    Whether the visitor is registered or not.
+</details>
+<details>
+    <summary>has_email</summary>
+    Whether the visitor has given us their email yet.
+</details>
+<details>
+    <summary>is_new</summary>
+    Whether this is the first time we have seen this visitor.
+</details>
+<details>
+    <summary>asked_card</summary>
+    Whether we offered a plastic access card to the visitor.
+    :::note
+    This feature may not be enabled for your system.
+    :::
+</details>
+<details>
+    <summary>prev_used_any_card</summary>
+    Whether the visitor has used a CAC or plastic access card in the past.<br/>
+    This is useful to determine if they may be interested in a plastic card.
+</details>
+<details>
+    <summary>appointment</summary>
+    Appointment data if the visitor has an approved appointment around the current time.<br/>
+    This is useful to customize the message and flow for the visitor, or restrict entry.
+</details>

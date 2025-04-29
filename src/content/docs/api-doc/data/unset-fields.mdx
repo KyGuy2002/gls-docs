@@ -1,0 +1,44 @@
+---
+title: Get Unset Reg Fields
+description: This endpoint retrieves a list of registration field keys that are not set for a visitor.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/kiosk/unsetFields
+This endpoint retrieves a list of registration field keys that are not set for a visitor.
+
+If a visitor completes their registration and later the admin adds a new field, this endpoint will return the new field key.
+
+
+### Query Parameters
+<details>
+    <summary>fName</summary>
+    First name of the visitor.
+</details>
+<details>
+    <summary>lName</summary>
+    Last name of the visitor.
+</details>
+**OR**
+<details>
+    <summary>uuid</summary>
+    UUID of the plastic access card.
+    :::note
+    This feature may not be enabled for your system.
+    :::
+</details>
+
+
+### Response Body
+```json
+string[]
+```

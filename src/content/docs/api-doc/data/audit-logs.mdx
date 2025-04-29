@@ -1,0 +1,149 @@
+---
+title: Get Audit Logs
+description: This endpoint retrieves a list of admin audit logs ordered by most recent.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/log
+This endpoint retrieves a list of admin audit logs ordered by most recent.
+
+
+:::note
+Results are ordered from most recent to oldest.<br/>
+Pay attention to the `startsAt` and `endsAt` parameter descriptions as they may be confusing.
+
+Use `endsAt` for example to get results in the last 30 days.
+:::
+
+
+### Query Parameters
+<details>
+    <summary>userName <Badge text="Optional" variant="default" /></summary>
+    `<first-name>:<last-name>` of the admin to filter logs by.
+</details>
+<details>
+    <summary>startsAt <Badge text="Optional" variant="default" /></summary>
+    Unix Epoch format (millis).  This is the timestamp where the results will **start** and continue in the past (most recent).<br/>
+    Default is the current time.
+</details>
+<details>
+    <summary>endsAt <Badge text="Optional" variant="default" /></summary>
+    Unix Epoch format (millis).  This is the timestamp where the results will **end** and not go any further into the past (oldest).<br/>
+</details>
+<details>
+    <summary>limit <Badge text="Optional" variant="default" /></summary>
+    Max item count in response.<br/>
+    Default is 30.
+</details>
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="VIEW_AUDIT_LOGS" variant="caution" />
+
+
+### Response Body
+```json
+{
+    "last_date": timestamp,
+    "data": AuditLogEntry[]
+}
+```
+<details>
+    <summary>last_date</summary>
+    Unix Epoch format (millis). This is the timestmap of the last log entry in the response.<br/>
+    Use this to get the next page of logs by passing it as a query parameter to the next request.
+</details>
+
+<details open>
+    <summary>data</summary>
+    Log entry data.
+
+    ```json
+    [
+        {
+            "first_name": string,
+            "last_name": string,
+            "timestamp": timestamp,
+            "action": ActionType,
+            "site_id": string | null,
+            "data": Object | null,
+        },
+        {...}
+    ]
+    ```
+
+    <details>
+        <summary>first_name</summary>
+        First name of the admin user.
+    </details>
+    <details>
+        <summary>last_name</summary>
+        Last name of the admin user.
+    </details>
+    <details>
+        <summary>timestamp</summary>
+        Unix Epoch format (millis). This is the time when the log entry was created.
+    </details> 
+    <details>
+        <summary>action</summary>
+        Type of audit log event.<br/>
+        - `EDIT_PROJECTS` - Admin edited kiosk projects. <Badge text="siteId" variant="caution" />
+        - `EDIT_ANNOUNCEMENTS` - Admin edited announcements. <Badge text="siteId" variant="caution" />
+        - `EDIT_FEATURED` - Admin edited featured items. <Badge text="siteId" variant="caution" />
+        - `LOG_IN` - Admin logged into the dashboard.
+        - `LOG_OUT` - Admin logged out of their dashboard.
+        - `LOAD_DASHBOARD` - Admin visited the dashboard.
+        - `EXPORT_DATA` - Admin exported data.
+            ```json
+            {
+                "type": "LOG" | "MEMBERS",
+                "days": number | "ALL_TIME"
+            }
+            ```
+        - `APP_APPROVE` - Admin approved an appointment.
+            ```json
+            {
+                "creatorFirstName": string,
+                "creatorLastName": string,
+                "id": string
+            }
+            ```
+        - `APP_CANCEL` - Admin cancelled an appointment.
+            ```json
+            {
+                "creatorFirstName": string,
+                "creatorLastName": string,
+                "id": string
+            }
+            ```
+        - `DEVICE_ADD` - Admin setup a new ChromeOS kiosk or display device.
+            ```json
+            {
+                "type": "KIOSK" | "DISPLAY",
+                "prettyName": string
+            }
+            ```
+        - `DEVICE_EDIT` - Admin modified the settings of a ChromeOS kiosk or display device.
+    </details>
+    <details>
+        <summary>site_id <Badge text="Nullable" variant="danger" /></summary>
+        ID of the subsite related to this event.<br/>
+        This will be null if the event type is not related to a subsite.  See `action` for which event types have a siteId.
+    </details>
+    <details>
+        <summary>data <Badge text="Nullable" variant="danger" /></summary>
+        Additionaly data relevant to this event.<br/>
+        This will be null if the event type has no data.  See `action` for which event types have a data.
+    </details>
+
+</details>

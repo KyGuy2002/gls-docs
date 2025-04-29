@@ -37,50 +37,38 @@ Last updated time is included in the response.
 ### Response Body
 ```json
 {
-
-    # Visitor count
     "visitor_count_today": number,
     "visitor_count_last_30_days": number,
     "visitor_count_prev_30_day_window": number,
 
-    # Unique visitor count
     "unique_count_last_30_days": number,
     "unique_count_prev_30_day_window": number,
 
-    # Registration form response count
     "registration_count_last_30_days": number,
     "registration_count_prev_30_day_window": number,
 
-    # Project prompt interaction
     "total_same_project_last_30_days": number,
     "total_diffrent_project_last_30_days": number,
     "total_select_project_last_30_days": number,
     "total_no_select_project_last_30_days": number,
 
-    # Plastic access card creation
     "total_linked_card_all_time": number,
     "total_declined_linked_card_all_time": number,
 
-    # Custom registration field metrics
     "visitor_count_reg_[<field-id>]_[<field-value>]": number,
     
-    # Daily visitor counts
     "historic": Count[],
     
-    # Project metrics
     "top_5_projects_last_30_days": Project[],
     
-    # Sign in method
     "id_count_last_30_days": number,
     "cac_count_last_30_days": number,
     "manual_count_last_30_days": number,
 
-    # Registration source
     "kiosk_registrations_last_30_days": number,
     "website_registrations_last_30_days": number,
     "total_registered_first_prompt_last_30_days": number,
     "total_not_registered_first_prompt_last_30_days": number,
-
 
     "timestamp": timestamp,
     "type": "create" | "update" | "reuse",
