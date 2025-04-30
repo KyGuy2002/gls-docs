@@ -1,0 +1,77 @@
+---
+title: Get API Keys
+description: This endpoint retrieves a list of API keys and their metadata.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/keys
+This endpoint retrieves a list of API keys and their metadata.
+
+:::note
+There is currently no way to create or delete API keys through the API.<br/>
+This must be done through the dashboard.
+:::
+
+
+### Security
+This endpoint requires authentication. You must include a valid API key in the request header.
+**Permission(s) Required:** <Badge text="EDIT_API_KEYS" variant="caution" />
+
+
+### Response Body
+```json
+[
+    {
+        "id": string,
+        "prettyName": string,
+        "perms": string[],
+        "creatorFirstName": string,
+        "creatorLastName": string,
+        "creatorEmail": string,
+        "created": timestamp,
+        "lastUsed": timestamp
+    },
+    {...}
+]
+```
+<details>
+    <summary>id</summary>
+    Unique identifier for the API key.
+</details>
+<details>
+    <summary>prettyName</summary>
+    The name of the API key.  This is for your reference only and does not affect the functionality of the key.
+</details>
+<details>
+    <summary>perms</summary>
+    The permissions granted to the API key.
+</details>
+<details>
+    <summary>creatorFirstName</summary>
+    The first name of the user who created the API key.
+</details>
+<details>
+    <summary>creatorLastName</summary>
+    The last name of the user who created the API key.
+</details>
+<details>
+    <summary>creatorEmail</summary>
+    The email of the user who created the API key.
+</details>
+<details>
+    <summary>created</summary>
+    Unix Epoch format (millis). The timestamp of when the API key was created.
+</details>
+<details>
+    <summary>lastUsed</summary>
+    Unix Epoch format (millis). The timestamp of when the API key was last used.
+</details>
