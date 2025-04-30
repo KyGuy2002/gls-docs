@@ -1,6 +1,6 @@
 ---
-title: Get Stats
-description: This endpoint allows you to get any time series statistics.
+title: Get Stats Summary
+description: This endpoint allows you to get the time series statistics displayed on the stats TV displays.
 next: false
 prev: false
 sidebar:
@@ -13,8 +13,13 @@ import { Badge } from '@astrojs/starlight/components';
 
 
 
-### <Badge text="GET" variant="success" size="large"/> /api/metrics
-This endpoint allows you to get any time series statistics.
+### <Badge text="GET" variant="success" size="large"/> /api/stats
+This endpoint allows you to get the time series statistics displayed on the stats TV displays.
+
+:::danger[Important]
+This is used by the stats TV displays to show an overview of the system.<br/>
+You may want to consider using the [general metrics endpoint](/api-doc/data/metrics) instead for faster loading times and a smaller response.  That API also exposes more data.
+:::
 
 :::note
 Statistics are cached on the server and only updated every 25 minutes.<br/>
@@ -27,23 +32,47 @@ Last updated time is included in the response.
     <summary>siteId</summary>
     ID of the subsite to filter announcements by.  Default is "main".
 </details>
-<details>
-    <summary>startTimestamp</summary>
-    Unix Epoch format (millis).  This is **earliest** timestamp to return.
-</details>
-<details>
-    <summary>endTimestamp</summary>
-    Unix Epoch format (millis).  This is **latest** timestamp to return.<br/>
-    Default is the current time.
-</details>
 
 
 ### Response Body
 ```json
 {
-    "<stat-key>": <stat-value>,
-    "timestamp": timestamp,
+    "visitor_count_today": number,
+    "visitor_count_last_30_days": number,
+    "visitor_count_prev_30_day_window": number,
+
+    "unique_count_last_30_days": number,
+    "unique_count_prev_30_day_window": number,
+
+    "registration_count_last_30_days": number,
+    "registration_count_prev_30_day_window": number,
+
+    "total_same_project_last_30_days": number,
+    "total_diffrent_project_last_30_days": number,
+    "total_select_project_last_30_days": number,
+    "total_no_select_project_last_30_days": number,
+
+    "total_linked_card_all_time": number,
+    "total_declined_linked_card_all_time": number,
+
+    "visitor_count_reg_[<field-id>]_[<field-value>]": number,
     
+    "historic": Count[],
+    
+    "top_5_projects_last_30_days": Project[],
+    
+    "id_count_last_30_days": number,
+    "cac_count_last_30_days": number,
+    "manual_count_last_30_days": number,
+
+    "kiosk_registrations_last_30_days": number,
+    "website_registrations_last_30_days": number,
+    "total_registered_first_prompt_last_30_days": number,
+    "total_not_registered_first_prompt_last_30_days": number,
+
+    "timestamp": timestamp,
+    "type": "create" | "update" | "reuse",
+    "reason": "most recent yesterday" | "most recent older than 25 min" | "within cooldown",
     "duration_ms": number
 }
 ```

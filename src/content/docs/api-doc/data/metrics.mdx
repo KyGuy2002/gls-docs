@@ -1,0 +1,98 @@
+---
+title: Get Stats
+description: This endpoint allows you to get any time series statistics.
+next: false
+prev: false
+sidebar:
+  badge:
+    text: GET
+    variant: success
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+### <Badge text="GET" variant="success" size="large"/> /api/metrics
+This endpoint allows you to get any time series statistics.
+
+:::danger[Warning]
+These statistics are generated **on request**.<br/>
+Some may take a long time to generate and are expensive.<br/>
+Please cache the responses yourself.<br/>
+:::
+
+
+### Query Parameters
+<details>
+    <summary>siteId <Badge text="Optional" variant="default" /></summary>
+    ID of the subsite to filter announcements by.  Default is "main".
+</details>
+<details>
+    <summary>startTimestamp <Badge text="Optional" variant="default" /></summary>
+    Unix Epoch format (millis).  This is **earliest** timestamp to return.
+</details>
+<details>
+    <summary>endTimestamp <Badge text="Optional" variant="default" /></summary>
+    Unix Epoch format (millis).  This is **latest** timestamp to return.<br/>
+    Default is the current time.
+</details>
+<details>
+    <summary>query</summary>
+    Name of the stat to generate.<br/>
+    - `visitor_count`<br/>
+        Sum of all visitors that signed in (not including sign-outs) within the time range.<br/>
+        This counts each visit, so will be more than one if the same visitor signed in multiple times in one day or multiple days.
+
+    - `registered_visitor_count`<br/>
+        Sum of all **registered** visitors that signed in (not including sign-outs) within the time range.<br/>
+        This counts each visit, so will be more than one if the same visitor signed in multiple times in one day or multiple days.
+
+    - `unique_visitor_count`<br/>
+        Sum of all unique visitors that signed in (not including sign-outs) within the time range.<br/>
+        This counts each visitor only once, so will be less than or equal to `visitor_count`.
+
+    - `unique_registered_visitor_count`<br/>
+        Sum of all unique **registered** visitors that signed in (not including sign-outs) within the time range.<br/>
+        This counts each visitor only once, so will be less than or equal to `registered_visitor_count`.
+
+    - `registration_count`<br/>
+        Sum of all registration form responses submitted within the time range.
+</details>
+
+
+### Response Body
+```json
+{
+    "value": number,
+    "query": string,
+    "startTimestampIso": string | null,
+    "endTimestampIso": string | null,
+    "windowLengthDays": number | null,
+    "durationMs": number
+}
+```
+<details>
+    <summary>value</summary>
+    The value of the statistic.
+</details>
+<details>
+    <summary>query</summary>
+    Name of the statistic that was requested. (same as `query` parameter)
+</details>
+<details>
+    <summary>startTimestampIso <Badge text="Nullable" variant="danger" /></summary>
+    ISO 8601 format.  Same as `startTimestamp` parameter.
+</details>
+<details>
+    <summary>endTimestampIso <Badge text="Nullable" variant="danger" /></summary>
+    ISO 8601 format.  Same as `endTimestamp` parameter.
+</details>
+<details>
+    <summary>windowLengthDays <Badge text="Nullable" variant="danger" /></summary>
+    How many days are included in the time range.
+</details>
+<details>
+    <summary>durationMs</summary>
+    How long it took to generate the statistic in milliseconds.
+</details>
