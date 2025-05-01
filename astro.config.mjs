@@ -22,7 +22,9 @@ export default defineConfig({
     }),
 
     redirects: {
-        "/hardware-setup/monitor-setup": "/setup/getting-started",
+        "/setup/enrollment/": "/user-guide/setup/enrollment",
+        "/setup/scanner-config/tera-9000/": "/user-guide/setup/scanner-config/tera-9000",
+        "/hardware-setup/monitor-setup/": "/user-guide/setup/monitor-setup",
     },
 
     site: 'https://docs.lumeninsight.net',
