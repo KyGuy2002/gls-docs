@@ -96,6 +96,29 @@ export default defineConfig({
                     },
                 ]),
             ],
+            head: [
+                {
+                    tag: 'script',
+                    attrs: {
+                        type: 'application/ld+json',
+                    },
+                    content: JSON.stringify([
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "WebSite",
+                            name: "Lumen Insight Docs",
+                            url: "https://docs.lumeninsight.net",
+                        },
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "OnlineBusiness",
+                            "sameAs": [
+                                "https://lumeninsight.net",
+                            ],
+                        }
+                    ])
+                }
+            ]
         }),
         sitemap(),
         react()
