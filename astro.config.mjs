@@ -115,7 +115,7 @@ export default defineConfig({
                             "@context": "https://schema.org",
                             "@type": "OnlineBusiness",
                             "sameAs": [
-                                "https://lumeninsight.net",
+                                "https://lumeninsight.net"
                             ]
                         }
                     ])
