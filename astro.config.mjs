@@ -22,9 +22,11 @@ export default defineConfig({
     }),
 
     redirects: {
+        "/setup/getting-started/": "/user-guide/setup/getting-started",
         "/setup/enrollment/": "/user-guide/setup/enrollment",
         "/setup/scanner-config/tera-9000/": "/user-guide/setup/scanner-config/tera-9000",
-        "/hardware-setup/monitor-setup/": "/user-guide/setup/monitor-setup",
+        "/hardware-setup/scanner-config/tera-hw0007/": "/user-guide/setup/scanner-config/tera-hw0007",
+        "/hardware-setup/monitor-setup/": "/user-guide/setup/hardware",
     },
 
     site: 'https://docs.lumeninsight.net',
@@ -114,7 +116,7 @@ export default defineConfig({
                             "@type": "OnlineBusiness",
                             "sameAs": [
                                 "https://lumeninsight.net",
-                            ],
+                            ]
                         }
                     ])
                 }
