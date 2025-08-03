@@ -22,6 +22,7 @@ export default defineConfig({
     }),
 
     redirects: {
+        "/api-doc": "/api-doc/start/auth/",
         "/setup/getting-started/": "/user-guide/setup/getting-started",
         "/setup/enrollment/": "/user-guide/setup/enrollment",
         "/setup/scanner-config/tera-9000/": "/user-guide/setup/scanner-config/tera-9000",
