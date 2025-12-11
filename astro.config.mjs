@@ -28,6 +28,9 @@ export default defineConfig({
         "/setup/scanner-config/tera-9000/": "/user-guide/setup/scanner-config/tera-9000",
         "/hardware-setup/scanner-config/tera-hw0007/": "/user-guide/setup/scanner-config/tera-hw0007",
         "/hardware-setup/monitor-setup/": "/user-guide/setup/hardware",
+
+        // 07 and 05 are the same config now but the 05 link exists in case something changes
+        "/user-guide/setup/scanner-config/tera-hw0005": "/user-guide/setup/scanner-config/tera-hw0007",
     },
 
     site: 'https://docs.lumeninsight.net',
