@@ -1,0 +1,32 @@
+---
+title: Changing Your Wi-Fi Network
+description: How to update the Wi-Fi network your kiosk is connected to.
+next: false
+prev: false
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
+import Image from '/src/components/Image.astro';
+
+This guide will help you connect your kiosk or display device to a different Wi-Fi network or update the Wi-Fi password.
+
+:::note
+You will need to connect a keyboard to your device to complete these steps.
+:::
+
+<Steps>
+
+    1. Reboot the device.
+       You can do this by unplugging it from power, waiting 10 seconds, and plugging it back in.
+    2. Wait for the kiosk startup screen to appear.  This can take a few seconds.
+        <Image url="/misc/kiosk-startup.webp" alt="Kiosk startup screen"/>
+    3. As soon as the startup screen appears, press and **hold** CTRL+ALT+S on the keyboard.
+       :::note
+       If the device attempts to boot into kiosk mode before you press the keys, simply reboot and try again.
+       :::
+    4. Once the startup screen disappears, release the keys.
+    5. You can now access the Wi-Fi settings menu in the bottom right corner of the screen.
+    6. When you are done updating the Wi-Fi settings, reboot the device again to test your changes and return to kiosk mode.
+
+</Steps>
